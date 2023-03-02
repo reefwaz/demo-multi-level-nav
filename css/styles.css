@@ -1,1 +1,104 @@
 /* developer styles go here */
+body {
+    font-family: sans-serif;
+}
+
+header {
+    max-width: 58rem;
+    margin: 0 auto;
+}
+
+/* Step 1. Style all the nav links for the amllest screen. Text Styling goes on the anchor
+elements to overwrite the browesr style. Layout and spacing goes on the li elements. */
+
+ul.menu {
+    background-color: #191919;
+}
+
+ul.menu a {
+    color: #f5f5f5;
+    text-decoration: underline;
+    text-transform: uppercase;
+    /* Expand the clickable area to fit the entire li vs just the text */
+    display: block;
+    padding-left: 1rem;
+}
+
+ul.menu a:hover,
+ul.menu a:active {
+    background-color: #3e3e3e;
+    border-radius: 5px;
+}
+
+ul.menu li {
+    line-height: 2.8125rem;
+    margin: 0.5rem 0;
+}
+
+svg {
+    display: none;
+}
+
+ul.submenu {
+    padding: 0 1rem;
+}
+
+ul.submenu a {
+    text-decoration: none;
+}
+
+@media screen and (min-width: 40rem) {
+    ul.menu {
+        display: flex;
+    }
+
+    ul.menu li {
+        flex: 1;
+        text-align: center;
+    }
+
+    ul.menu a {
+        padding: left;
+    }
+
+    ul.submenu li {
+        text-align: left;
+    }
+
+    svg {
+        width: 1rem;
+        fill: #f5f5f5;
+        margin: 0.25rem 0 0 0.75rem;
+        display: inline;
+    }
+
+    /* Step 2. Position, style, and hide the deopdown nemu */
+    ul.submenu {
+        position: absolute;
+        /* z-index will place this item on top */
+        z-index: 1;
+        background-color: #191919;
+        border-radius: 0 0 5px 5px;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    /* step 3. add a hover state to the main menu li and show the submenu of that li */
+    ul.menu li:hover > ul.submenu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* step 4. add transition state to make this smooth. Makes this dropdown a little more 
+    usable. Transition all cahnging properties (visibility and opacity), with a 
+    duration 0.5 s and a timing function of ease*/
+    /* Add this to the original befor the change */
+
+    /* Step 5. Add accessibility with the :focus-within state */
+    ul.menu li:focus-within > ul,
+    ul.menu li >ul:focus {
+        visibility: visible;
+        opacity: 1;
+    }
+}
